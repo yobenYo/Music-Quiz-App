@@ -1,0 +1,177 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Mobile App Project</title>
+	<link rel="stylesheet" href="themes/mobileapp.min.css" />
+	<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+	<link rel="stylesheet" href="css/jquery.mobile.structure-1.4.5.min.css" />
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <style>
+.showanswer
+{
+  position:relative;
+  width:200px;
+  color:white;
+  padding:15px;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:10px;
+  margin-bottom:10px;
+  background-color:red;	
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  text-align:center;
+}
+.question
+{
+  position:relative;
+  color:black;
+  font-size:1.5em;
+  padding:15px;
+  margin-left:auto;
+  margin-right:auto;
+    margin-top:10px;
+  margin-bottom:10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+   border-radius: 10px;
+   text-align:center;
+}
+.answer
+{
+  position:relative;
+  width:200px;
+  color:white;
+  padding:15px;
+  margin-left:auto;
+  margin-right:auto;
+    margin-top:10px;
+  margin-bottom:10px;
+  background-color:orange;	
+  display:none;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+   border-radius: 10px;
+     text-align:center;
+}
+.option
+{
+  position:relative;
+  width:200px;
+  color:white;
+  padding:15px;
+  margin-left:auto;
+  margin-right:auto;
+    margin-top:10px;
+  margin-bottom:10px;
+  background-color:blue;	
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+   border-radius: 10px;
+   text-align:center;
+   
+}
+.proceed
+{
+  position:relative;
+  width:200px;
+  color:white;
+  padding:15px;
+  margin-left:auto;
+  margin-right:auto;
+    margin-top:10px;
+  margin-bottom:10px;
+  background-color:red;	
+  display:none;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+   border-radius: 10px;
+   text-align:center;
+   
+}
+a.proceed, a.proceed:hover, a.proceed:active, a.proceed:visited { text-decoration:none; color:white;}
+</style>
+    <script type="text/javascript">
+function getPath() 
+{
+            var str = location.pathname;
+            var i = str.lastIndexOf('/');
+            return str.substring(0,i+1);
+}
+function showanswer(n)
+{
+   document.getElementById('showanswer' + n).style.display='none';
+   document.getElementById('answer' + n).style.display='block';
+   document.getElementById('proceed' + n).style.display='block';
+}
+		
+function loadXMLDoc(filename)
+{
+if (window.XMLHttpRequest)
+  {
+  xhttp=new XMLHttpRequest();
+  }
+else // code for IE5 and IE6
+  {
+  xhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  filename=getPath() + filename;
+xhttp.open("GET",filename,false);
+xhttp.send();
+return xhttp.responseXML;
+}
+	</script>
+</head>
+<body>
+
+			<form id="theQuiz" method="post">
+        <script type="text/javascript">
+		   var xmlDoc=loadXMLDoc("data.xml");
+		   counter=5;
+		   x=xmlDoc.getElementsByTagName("task").length;
+		   var items = xmlDoc.getElementsByTagName('task');
+		   for (i=0;i<x;i++)
+           {
+              thisitem= items[i];
+			  document.write('<div data-role="page" id="page' + i + '"><div data-role="header" data-theme="a"><a href="#" data-role="button" data-icon="back" onclick="document.location.href=\'index.html\';">&nbsp;</a><h1>Quiz - Question ' + i + '</h1></div>');
+			  //Start Questions Code
+			  question = thisitem.getElementsByTagName("question")[0].textContent; // W3C
+			  document.write('<div class="question">' + question + '</div>');
+			  option1 = thisitem.getElementsByTagName("option")[0].textContent; // W3C
+			  document.write('<div class="option">' + option1 + '</div>');
+			  option2 = thisitem.getElementsByTagName("option")[1].textContent; // W3C
+			  document.write('<div class="option">' + option2 + '</div>');
+			  option3 = thisitem.getElementsByTagName("option")[2].textContent; // W3C
+			  document.write('<div class="option">' + option3 + '</div>');
+			  document.write('<div class="showanswer" onclick="showanswer(' + i + ')" id="showanswer' + i + '">Show Answer</div>');
+              answer = thisitem.getElementsByTagName("answer")[0].textContent; // W3C
+			  document.write('<div class="answer" id="answer' + i + '">' + answer + '</div>');
+			  z=x-1;
+			  if (i==z)
+			  {
+				document.write('<a href="#page0" class="proceed" id="proceed' + i + '">Start Over</a>');  
+			  }
+			  else
+			  {
+			  document.write('<a href="#page' + (i+1) + '" class="proceed" id="proceed' + i + '">Proceed</a>');
+			  }
+			  //End Questions Code
+			  document.write('<div data-role="footer"><h1>&copy; Benjamin Cruickshank - 2016</h1></div></div> ');
+            }  
+
+		  
+		</script>
+			
+		</form>
+
+<script type="text/javascript">
+   function backKeyDown() 
+   { 
+      document.location('index.html');
+   }
+</script>     
+</body>
+</html>

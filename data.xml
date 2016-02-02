@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1"?> 
+<All>         
+        <task>
+              <question>How long did the song go for?</question>
+              <option>4:35</option>
+              <option>2:40</option>
+              <option>3:57</option>
+			  <answer>3:57</answer>
+        </task>         
+        <task>
+              <question>Who were the two artists in the song?</question>
+              <option>Big L and Shyheim</option>
+              <option>Kanye West and Jay Z</option>
+              <option>Tupac and Biggie</option>
+			  <answer>Big L and Shyheim</answer>
+        </task>         
+        <task>
+              <question>What movie was the quote from?</question>
+              <option>Finding Nemo</option>
+              <option>Pulp Fiction</option>
+              <option>I am Legend</option>
+			  <answer>Pulp Fiction</answer>
+        </task> 
+		<task>
+              <question>What was the name of the song?</question>
+              <option>Furious Anger</option>
+              <option>Changes</option>
+              <option>Fuck The Police</option>
+			  <answer>Furious Anger</answer>
+        </task>        
+</All>
